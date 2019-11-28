@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    {% comment %} <link rel="stylesheet" href="{% static 'css/master.css' %}"> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/master.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% comment %} <script type="text/javascript" src="{% static 'js/jquery.fittext.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.lettering.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.textillate.js' %}"></script> {% endcomment %}
+
+      <script type="text/javascript" src="{% static 'js/abc.js' %}">  </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+
+  <style media="screen">
+  /* body{
+      padding-left: 50px;
+    } */
+    .spp{
+      padding-top: 20px;
+    }
+
+    .nvb{
+      position:fixed;
+      margin-left: 0px !important;
+      padding-right: 50px !important;
+    }
+
+
+    .notif{
+      z-index: 350;
+      box-shadow: 0px 5px 10px black;
+      box-sizing: border-box;
+      height:70vh;
+      width:30vw;
+      position:absolute;
+      background-color: white;
+      margin-left: 15vw;
+      display:none;
+    }
+
+
+
+  </style>
+
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <img class="logoimage" src="{% static 'abc.png' %}" alt="" width="60" height="70"> <a class="navbar-brand" href="#">    IIITDM JABALPUR   <br>   Student Portal </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'showmaterials' %}">Materials</a>
+          </li>
+          {% comment %} <li class="nav-item">
+            <a class="nav-link" href="#">Notifications</a>
+          </li> {% endcomment %}
+
+          <li class="nav-item">
+            <a class="nav-link nbt" >Notifications</a>
+          </li>
+
+        </ul>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"></li>
+        </ul>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"></li>
+        </ul>
+
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logoutpage' %}">Logout</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'profilepage' %}">{{user.username}}</a>
+          </li>
+        </ul>
+
+
+
+      </div>
+    </nav>
+
+
+
+    {% comment %} Vertical Navabr {% endcomment %}
+    {% comment %} <ul class="nav flex-column nvb">
+      <li class="nav-item">
+        <a class="nav-link active" href="#">Active</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul> {% endcomment %}
+    <div class="notif">
+
+      <ol>
+        {% for notific in Notifications %}
+
+          <li>
+
+                <div class="notifica">
+                  <h3>{{notific.topic}}</h3>
+                  <h5>{{notific.branch}}</h5>
+                  <h5>{{notific.programme}}</h5>
+                  <h6>{{notific.description}}</h6>
+                </div>
+
+          </li>
+
+        {% endfor %}
+      </ol>
+
+    </div>
+
+    <div class="spp">
+
+    </div>
+
+
+    {% block content %}
+
+    {% endblock %}
+  </body>
+
+
+
+
+
+</html>
